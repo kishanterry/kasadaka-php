@@ -28,6 +28,20 @@ class ForecastController extends Controller
             $this->town = $this->towns[session('town')];
         }
 
+        $client = new Client();
+
+        $res = $client->request('GET', 'https://api.openweathermap.org/data/2.5/forecast', [
+            'query' => [
+                'APPID' => env('WEATHER_API'),
+                'q' => $this->towns[$town] . ',gh'
+            ]
+        ]);
+
+        $data = json_decode($res->getBody(), true);
+        // This data can be used to forecast weather. The calculation algorithm
+        // for generating appropriate response is still being figured out.
+        // FUTURE WORK!
+
         $forecasts = [];
 
         switch ($time) {

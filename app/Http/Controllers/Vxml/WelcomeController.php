@@ -22,6 +22,12 @@ class WelcomeController extends Controller
 
     public function create()
     {
-        return redirect(url('/vxml'));
+        $region = request('option') ?? '1';
+
+        if ($region == '9') {
+            return redirect(url('/vxml'));
+        }
+
+        return redirect(url('/vxml/towns/' . $region));
     }
 }

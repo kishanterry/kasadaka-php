@@ -1,5 +1,13 @@
 <?php
 Route::group(['prefix' => 'vxml'], function() {
+    Route::get('/forecast/{town}/{time}', 'Vxml\ForecastController@index');
+
+    Route::post('/time-period/{option}', 'Vxml\TimePeriodSelectionController@create');
+    Route::get('/time-period/{option}', 'Vxml\TimePeriodSelectionController@index');
+
+    Route::post('/towns/{option}', 'Vxml\TownSelectionController@create');
+    Route::get('/towns/{option}', 'Vxml\TownSelectionController@index');
+
     Route::post('/', 'Vxml\WelcomeController@create');
     Route::get('/', 'Vxml\WelcomeController@index');
 });

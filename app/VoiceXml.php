@@ -2,8 +2,6 @@
 
 namespace App;
 
-use pdeans\Builders\XmlBuilder;
-
 class VoiceXML {
 
     protected $builder;
@@ -13,7 +11,6 @@ class VoiceXML {
 
     function __construct()
     {
-        $this->builder = new XmlBuilder;
         $this->prompts = collect([]);
     }
 
@@ -47,6 +44,34 @@ class VoiceXML {
             $prompts->addChild('audio')->addAttribute('src', $src);
         });
 
+        $filled = $field->addChild('filled');
+        $if = $filled->addChild('if');
+        $if->addAttribute('cond', "option == '1'");
+        $c = $if->addChild('assign');
+        $c->addAttribute('name', 'option');
+        $c->addAttribute('expr', "'1'");
+
+        $if->addChild('elseif')->addAttribute('cond', "option == '2'");
+
+        $c = $if->addChild('assign');
+        $c->addAttribute('name', 'option');
+        $c->addAttribute('expr', "'2'");
+
+        $if->addChild('elseif')->addAttribute('cond', "option == '3'");
+
+        $c = $if->addChild('assign');
+        $c->addAttribute('name', 'option');
+        $c->addAttribute('expr', "'3'");
+
+        $if->addChild('elseif')->addAttribute('cond', "option == '4'");
+
+        $c = $if->addChild('assign');
+        $c->addAttribute('name', 'option');
+        $c->addAttribute('expr', "'4'");
+
+        $if->addChild('else');
+        $filled->addChild('goto')->addAttribute('next', "submit_form");
+
         $sForm = $vxml->addChild('form');
         $sForm->addAttribute('id', 'submit_form');
 
@@ -54,18 +79,21 @@ class VoiceXML {
         $submit = $block->addChild('submit');
         $submit->addAttribute('next', $endpoint);
         $submit->addAttribute('method', 'POST');
+        $submit->addAttribute('namelist', 'option');
 
         return $vxml;
+    }
 
-       //          'form' => [
-       //              '@a' => [
-       //                  'id' => 'welcome',
-       //              ],
-       //              '@t' => ['OK' => 'OK']
-       //          ],
-       //      ]
-       //  ]);
+    public function disconnect()
+    {
+        $vxml = new \SimpleXMLElement('<vxml/>');
+        $vxml->addAttribute('xmlns', 'http://www.w3.org/2001/vxml');
+        $vxml->addAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+        $vxml->addAttribute('version', '2.1');
+        $vxml->addAttribute('xsi:schemaLocation', 'http://www.w3.org/2001/vxml http://www.w3.org/TR/2007/REC-voicexml21-20070619/vxml.xsd');
 
-       //  return $this->response;
+        $property = $vxml->addChild('disconnect');
+
+        return $vxml;
     }
 }

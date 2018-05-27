@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5bca48e56bbf3a25645858fcab9c285",
+    "content-hash": "416d886762ecac1acd02e0853b8b1153",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -968,6 +968,52 @@
                 "random"
             ],
             "time": "2018-04-04T21:24:14+00:00"
+        },
+        {
+            "name": "pdeans/xml-builder",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pdeans/xml-builder.git",
+                "reference": "8914814cc86f857e15bb0c7ff6ee1d03e255ebd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pdeans/xml-builder/zipball/8914814cc86f857e15bb0c7ff6ee1d03e255ebd4",
+                "reference": "8914814cc86f857e15bb0c7ff6ee1d03e255ebd4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xmlwriter": ">=0.1",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pdeans\\Builders\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Stearns",
+                    "email": "pdeans1986@gmail.com",
+                    "homepage": "http://patrickstearns.us"
+                }
+            ],
+            "description": "Simple and lightweight library to make generating XML a breeze.",
+            "keywords": [
+                "builder",
+                "writer",
+                "xml",
+                "xml builder",
+                "xml generator",
+                "xml writer"
+            ],
+            "time": "2018-01-15T07:29:29+00:00"
         },
         {
             "name": "psr/container",
